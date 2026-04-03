@@ -2,12 +2,12 @@
 #define DSP_MATH_COMPLEX_H_
 
 #include <cmath>
-#include <exception>
 #include <iomanip>
 #include <iostream>
+#include <stdexcept>
 
-#include "macros.h"
-#include "types.h"
+#include "math/macros.h"
+#include "math/types.h"
 
 namespace math
 {

@@ -2,11 +2,13 @@
 #define DSP_MATH_VECTOR_H_
 
 #include <cassert>
-#include <exception>
+#include <cmath>
+#include <stdexcept>
+#include <type_traits>
 #include <vector>
 
-#include "complex.h"
-#include "types.h"
+#include "math/complex.h"
+#include "math/types.h"
 
 namespace math
 {
@@ -15,9 +17,11 @@ namespace math
    {
       public:
          constexpr vector() noexcept=default;
-         constexpr explicit vector(u16) noexcept;
+         constexpr explicit vector(u32) noexcept;
          constexpr vector(const std::initializer_list<T>&) noexcept;
          constexpr vector(const std::vector<T>&) noexcept;
+         template <typename R>
+         constexpr vector(const std::vector<R>&);
          constexpr vector(const vector&) noexcept;
          ~vector() noexcept=default;
 
@@ -35,8 +39,12 @@ namespace math
 
          operator std::vector<T>() const noexcept;
 
-         constexpr u16 dimension() const noexcept;
+         constexpr u32 dimension() const noexcept;
          constexpr std::vector<T> getData() const noexcept;
+         constexpr void writeData(u32, T);
+
+         constexpr double magnitude() const noexcept;
+         constexpr double magnitudeSquared() const noexcept;
 
          vector multiplyElements(const vector&) const;
          vector& multiplyElementsAssign(const vector&);
@@ -91,7 +99,7 @@ namespace math
          }
 
       private:
-         u16 dim{};
+         u32 dim{};
          std::vector<T> data{};
    };
 }

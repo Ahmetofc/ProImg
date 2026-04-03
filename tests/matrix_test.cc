@@ -322,6 +322,20 @@ namespace
       EXPECT_THROW(m.getSubMatrix({0,2}, {0,4}), std::range_error);
    }
 
+   TEST(MatrixTest, Transpose)
+   {
+      math::matrix<double> m1={{1,2},{3,4},{5,6}};
+      math::matrix<double> m2=m1.transpose();
+      EXPECT_EQ(m2, math::matrix<double>({{1,3,5},{2,4,6}}));
+   }
+
+   TEST(MatrixTest, TransposeAssign)
+   {
+      math::matrix<double> m1={{1,2},{3,4},{5,6}};
+      m1.transposeAssign();
+      EXPECT_EQ(m1, math::matrix<double>({{1,3,5},{2,4,6}}));
+   }
+
    TEST(MatrixTest, MultiplyElements)
    {
       math::matrix<double> m1={{1,2,3},{2,3,4}};

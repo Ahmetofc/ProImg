@@ -3,8 +3,8 @@
 
 #include <random>
 
-#include "macros.h"
-#include "types.h"
+#include "math/macros.h"
+#include "math/types.h"
 
 namespace math
 {

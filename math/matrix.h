@@ -2,13 +2,13 @@
 #define DSP_MATH_MATRIX_H_
 
 #include <cassert>
-#include <exception>
 #include <iostream>
+#include <stdexcept>
 #include <vector>
 
-#include "complex.h"
-#include "range.h"
-#include "types.h"
+#include "math/complex.h"
+#include "math/range.h"
+#include "math/types.h"
 
 namespace math
 {
@@ -17,7 +17,7 @@ namespace math
    {
       public: 
          constexpr matrix() noexcept=default;
-         constexpr matrix(u16, u16) noexcept;
+         constexpr matrix(u32, u32) noexcept;
          constexpr matrix(const std::initializer_list<std::initializer_list<T>>&);
          constexpr matrix(const std::vector<std::vector<T>>&);
          constexpr matrix(const matrix&) noexcept;
@@ -36,12 +36,18 @@ namespace math
 
          bool operator==(const matrix&) const noexcept;
 
-         constexpr u16 rowNumber() const noexcept;
-         constexpr u16 columnNumber() const noexcept;
+         constexpr u32 rowNumber() const noexcept;
+         constexpr u32 columnNumber() const noexcept;
          constexpr std::vector<std::vector<T>> getData() const noexcept;
+         constexpr void writeData(u32, const std::vector<T>&);
 
          matrix getSubMatrix(intRange, intRange) const;
+         matrix transpose() const noexcept;
+         matrix& transposeAssign() noexcept;
          //matrix& subMatrixConstruct(matrix&, matrix&, matrix&, matrix&);
+
+         matrix multiplyElements(const matrix&) const;
+         matrix& multiplyElementsAssign(const matrix&);
 
          friend math::matrix<T> operator*(const math::matrix<T>& lhs, math::complex rhs) noexcept
          {
@@ -89,17 +95,17 @@ namespace math
          {
             output << "Matrix with dimensions " << input.row << "x" << input.col << std::endl;
             output << "Matrix entries:" << std::endl;
-            for(u16 i{}; i<input.row; i++)
+            for(u32 i{}; i<input.row; i++)
             {
-               for(u16 j{}; j<input.col; j++)
+               for(u32 j{}; j<input.col; j++)
                   output << input.data.at(j).at(i) << " ";
                output << std::endl;
             }
             return output;
          }
-
+         
       private:
-         u16 row{}, col{};
+         u32 row{}, col{};
          std::vector<std::vector<T>> data{};
    };
 }

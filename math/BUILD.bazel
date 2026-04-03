@@ -2,7 +2,7 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
    name="math_tools",
-   hdrs=["complex.h", "complex-inl.h", "vector.h", "vector-inl.h", "matrix.h", 
-         "matrix-inl.h", "macros.h", "random.h", "range.h", "types.h"],
+   hdrs=["complex.h", "complex-inl.h", "convolution.h", "convolution-inl.h", "macros.h", "matrix.h", 
+         "matrix-inl.h", "random.h", "range.h", "types.h", "vector.h", "vector-inl.h"],
    visibility=["//visibility:public"]
 )

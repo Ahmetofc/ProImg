@@ -2,8 +2,11 @@
 #define DSP_MATH_RANGE_H_
 
 #include <cassert>
+#include <initializer_list>
+#include <iterator>
+#include <stdexcept>
 
-#include "types.h"
+#include "math/types.h"
 
 namespace math
 {
@@ -11,26 +14,28 @@ namespace math
    {
       public:
          intRange()=delete;
-         constexpr intRange(u16 inst) noexcept : start(inst), end(inst)
+         constexpr intRange(u32 inst) noexcept : start(inst), end(inst)
          {
          }
-         constexpr intRange(u16 _start, u16 _end) noexcept : start(_start), end(_end)
+         constexpr intRange(u32 _start, u32 _end) : start(_start), end(_end)
          {
-            assert(start<=end);
+            if(start>end)
+               throw std::range_error("Invalid range.\n");
          }
-         constexpr intRange(const std::initializer_list<u16>& _data) noexcept : start(std::data(_data)[0]), end(std::data(_data)[1])
+         constexpr intRange(const std::initializer_list<u32>& _data) : start(std::data(_data)[0]), end(std::data(_data)[1])
          {
-            assert(start<=end);
+            if(start>end)
+               throw std::range_error("Invalid range.\n");
          }
          ~intRange() noexcept=default;
 
-         constexpr u16 span() noexcept
+         constexpr u32 span() noexcept
          {
             return end-start+1;
          }
 
       public:
-         const u16 start, end;
+         const u32 start, end;
    };
 }
 
