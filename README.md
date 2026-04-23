@@ -83,7 +83,7 @@ ProImg also comes with math and image frameworks for independent usage. It provi
 
 ### Tools and Frameworks Used
 
-- GTest Framwork for unit tests
+- GoogleTest Framework for unit tests
 - SDL2 Library for CPU-side real-time rendering
 - Bzlmod for building the project and organizing the dependencies
 
