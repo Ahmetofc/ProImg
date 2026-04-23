@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
 {
    if(argc!=2)
    {
-      std::cerr << "Invalid use.\nUsage: bazel run //app:DSP -- <filename>\nNote: <filename> should exist in the data/ directory." << std::endl;
+      std::cerr << "Invalid use.\nUsage: bazel run //app:ProImg -- <filename>\nNote: <filename> should exist in the data/ directory." << std::endl;
       return -1;
    }
    std::string runfiles_error;
@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
       std::cerr << runfiles_error << std::endl;
       return -1;
    }
-   std::string image_path = runfiles->Rlocation("dsp/data/")+argv[1];
+   std::string image_path = runfiles->Rlocation("proimg/data/")+argv[1];
    std::ifstream ppm(image_path, std::ios::binary);
    if(!ppm.is_open())
    {
