@@ -1,0 +1,7 @@
+filegroup(
+   name="inputs",
+   srcs=glob([
+      "*.ppm",
+   ], allow_empty=True),
+   visibility=["//visibility:public"]
+)

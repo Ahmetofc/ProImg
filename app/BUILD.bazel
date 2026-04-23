@@ -1,0 +1,8 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+cc_binary(
+   name="ProImg",
+   srcs=["log-inl.h", "proimg.cc"],
+   data=["//data:inputs"],
+   deps=["//math:math_tools", "//image:image_tools", "@bazel_tools//tools/cpp/runfiles", "@sdl2//:sdl2"]
+)

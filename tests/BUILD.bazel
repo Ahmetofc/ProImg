@@ -1,25 +1,25 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
-   name="range_test",
-   srcs=["range_test.cc"],
-   deps=["//math:math_tools", "@googletest//:gtest_main"]
-)
-
-cc_test(
    name="complex_test",
    srcs=["complex_test.cc"],
    deps=["//math:math_tools", "@googletest//:gtest_main"]
 )
 
 cc_test(
-   name="vector_test",
-   srcs=["vector_test.cc"],
+   name="matrix_test",
+   srcs=["matrix_test.cc"],
    deps=["//math:math_tools", "@googletest//:gtest_main"]
 )
 
 cc_test(
-   name="matrix_test",
-   srcs=["matrix_test.cc"],
+   name="range_test",
+   srcs=["range_test.cc"],
+   deps=["//math:math_tools", "@googletest//:gtest_main"]
+)
+
+cc_test(
+   name="vector_test",
+   srcs=["vector_test.cc"],
    deps=["//math:math_tools", "@googletest//:gtest_main"]
 )

@@ -1,5 +1,19 @@
 namespace image
 {
+   inline std::vector<u8> sdlPreprocess(const math::matrix<double>& data) 
+   {
+      // can add single dimension vectors -> inflate up to 3D
+      if(data.rowNumber()!=3)
+         throw std::domain_error("Invalid data to be preprocessed.\n");
+      std::vector<u8> res;
+      res.reserve(3*data.columnNumber());
+      auto data_=data.getData();
+      for(const auto& column : data_)
+         for(const double element : column)
+            res.push_back(inverseGammaCorrection(element));
+      return res;
+   }
+
    inline math::matrix<double> extractR(const math::matrix<double>& data) noexcept
    {
       u32 max_iter=data.columnNumber();
@@ -272,6 +286,9 @@ namespace image
 
    inline math::matrix<double> gaussianBlur(const math::matrix<double>& data, double sigma, u32 width, u32 height)
    {
+      if(sigma<=0)
+         throw std::domain_error("Invalid blur size.\n");
+      // refactor the codes to flatten - deflatten matrices into their own functions
       auto ch1 = extractR(data); auto ch1_data = ch1.getData();
       auto ch2 = extractG(data); auto ch2_data = ch2.getData();
       auto ch3 = extractB(data); auto ch3_data = ch3.getData();
@@ -293,23 +310,19 @@ namespace image
          m2.writeData(i, v2);
          m3.writeData(i, v3);
       }
-      u32 kernel_size = 2*M_PI*sigma;
+      u32 kernel_size = 2*M_PI*sigma+1;
       auto gaussianFilter = [sigma](double x, double y)->double{ return std::pow(M_E, -(x*x+y*y)/(2*sigma*sigma)); };
-      double norm{};
-      for(u32 i{}; i<kernel_size; i++)
-         for(u32 j{}; j<kernel_size; j++)
-            norm+=gaussianFilter(i-kernel_size/2, j-kernel_size/2);
       math::matrix<double> kernel(kernel_size, kernel_size);
       math::vector<double> v(kernel_size);
       for(u32 i{}; i<kernel_size; i++)
       {
          for(u32 j{}; j<kernel_size; j++)
-            v.writeData(j, gaussianFilter(i-kernel_size/2, j-kernel_size/2)/norm);
+            v.writeData(j, gaussianFilter(static_cast<i32>(i)-static_cast<i32>(kernel_size/2), static_cast<i32>(j)-static_cast<i32>(kernel_size/2)));
          kernel.writeData(i, v);
       }
-      auto ch1_blur = math::convolve2D(m1, kernel).getData();
-      auto ch2_blur = math::convolve2D(m2, kernel).getData();
-      auto ch3_blur = math::convolve2D(m3, kernel).getData();
+      auto ch1_blur = math::convolve2DNormalized(m1, kernel).getData();
+      auto ch2_blur = math::convolve2DNormalized(m2, kernel).getData();
+      auto ch3_blur = math::convolve2DNormalized(m3, kernel).getData();
       math::matrix<double> blur_data(3, width*height);
       for(u32 i{}; i<width; i++)
          for(u32 j{}; j<height; j++)

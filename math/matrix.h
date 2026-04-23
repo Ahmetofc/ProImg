@@ -1,5 +1,5 @@
-#ifndef DSP_MATH_MATRIX_H_
-#define DSP_MATH_MATRIX_H_
+#ifndef PROIMG_MATH_MATRIX_H_
+#define PROIMG_MATH_MATRIX_H_
 
 #include <cassert>
 #include <iostream>

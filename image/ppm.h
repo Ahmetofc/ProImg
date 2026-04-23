@@ -1,5 +1,5 @@
-#ifndef DSP_IMAGE_PPM_H
-#define DSP_IMAGE_PPM_H
+#ifndef PROIMG_IMAGE_PPM_H
+#define PROIMG_IMAGE_PPM_H
 
 #include <filesystem>
 #include <fstream>

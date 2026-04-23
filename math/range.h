@@ -1,5 +1,5 @@
-#ifndef DSP_MATH_RANGE_H_
-#define DSP_MATH_RANGE_H_
+#ifndef PROIMG_MATH_RANGE_H_
+#define PROIMG_MATH_RANGE_H_
 
 #include <cassert>
 #include <initializer_list>

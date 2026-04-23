@@ -1,5 +1,5 @@
-#ifndef DSP_MATH_COMPLEX_H_
-#define DSP_MATH_COMPLEX_H_
+#ifndef PROIMG_MATH_COMPLEX_H_
+#define PROIMG_MATH_COMPLEX_H_
 
 #include <cmath>
 #include <iomanip>

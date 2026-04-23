@@ -1,5 +1,5 @@
-#ifndef DSP_MATH_MACROS_H_
-#define DSP_MATH_MACROS_H_
+#ifndef PROIMG_MATH_MACROS_H_
+#define PROIMG_MATH_MACROS_H_
 
 #include "math/types.h"
 

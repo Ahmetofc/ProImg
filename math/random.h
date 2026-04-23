@@ -1,5 +1,5 @@
-#ifndef DSP_MATH_RANDOM_H_
-#define DSP_MATH_RANDOM_H_
+#ifndef PROIMG_MATH_RANDOM_H_
+#define PROIMG_MATH_RANDOM_H_
 
 #include <random>
 

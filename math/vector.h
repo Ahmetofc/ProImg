@@ -1,5 +1,5 @@
-#ifndef DSP_MATH_VECTOR_H_
-#define DSP_MATH_VECTOR_H_
+#ifndef PROIMG_MATH_VECTOR_H_
+#define PROIMG_MATH_VECTOR_H_
 
 #include <cassert>
 #include <cmath>

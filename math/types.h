@@ -1,5 +1,5 @@
-#ifndef DSP_MATH_TYPES_H_
-#define DSP_MATH_TYPES_H_
+#ifndef PROIMG_MATH_TYPES_H_
+#define PROIMG_MATH_TYPES_H_
 
 using u8 = unsigned char;
 using u16 = unsigned short;
