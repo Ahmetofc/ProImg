@@ -11,7 +11,7 @@
 void fillBuffer()
 {
    struct winsize w;
-   ioctl(STDOUT_FILENO, TIOCGSIZE, &w);
+   ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
    std::string filler(w.ws_col, '=');
    std::cout << filler << std::endl;
 }

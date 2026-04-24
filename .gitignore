@@ -1,6 +1,6 @@
 .DS_Store
 .vscode
 bazel-bin
-bazel-DSP
+bazel-ProImg
 bazel-out
 bazel-testlogs
