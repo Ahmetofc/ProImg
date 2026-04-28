@@ -90,7 +90,7 @@ ProImg also comes with math and image frameworks for independent usage. It provi
 ### Project Structure
 
 ``` text
-ProImg
+ProImg/
 │
 ├── app/
 │   ├── BUILD.bazel
