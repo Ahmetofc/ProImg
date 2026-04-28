@@ -3,6 +3,7 @@
 
 #include <filesystem>
 #include <fstream>
+#include <limits>
 #include <stdexcept>
 #include <string>
 
@@ -21,6 +22,8 @@ namespace image
    inline double clamp(double);
    inline double gammaCorrection(u8);
    inline u8 inverseGammaCorrection(double);
+
+    inline std::string ppmGetline(std::ifstream&);
 
    inline void ppmHeader(std::ofstream&, const ppmArgs={});
    inline ppmArgs ppmHeaderInfo(std::ifstream&);

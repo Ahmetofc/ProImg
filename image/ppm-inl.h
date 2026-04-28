@@ -19,6 +19,18 @@ namespace image
       return channel*255;
    }
 
+   inline std::string ppmGetline(std::ifstream& image)
+   {
+      std::string buffer{};
+      u8 ch;
+      while((ch=image.get())!=' ' && ch!='\n')
+         if(ch=='#')
+            image.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+         else
+            buffer+=ch;
+      return buffer;
+   }
+
    inline void ppmHeader(std::ofstream& image, const ppmArgs args)
    {
       if(args.maxVal!=255)
