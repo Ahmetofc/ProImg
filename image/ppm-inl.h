@@ -48,7 +48,7 @@ namespace image
       {
          if(!count)
          {
-            std::getline(image, temp);
+            temp=ppmGetline(image);
             if(temp[0]!='#')
             {
                args.type=temp;
@@ -57,18 +57,18 @@ namespace image
          }
          if(count==1)
          {
-            std::getline(image, temp, ' ');
+            temp=ppmGetline(image);
             if(temp[0]!='#')
             {
                args.width=atoi(temp.c_str());
                count++;
             }
             else
-               std::getline(image, temp);
+               temp=ppmGetline(image);
          }
          if(count==2)
          {
-            std::getline(image, temp);
+            temp=ppmGetline(image);
             if(temp[0]!='#')
             {
                args.height=atoi(temp.c_str());
@@ -77,7 +77,7 @@ namespace image
          }
          if(count==3)
          {
-            std::getline(image, temp);
+            temp=ppmGetline(image);
             if(temp[0]!='#')
             {
                args.maxVal=atoi(temp.c_str());
