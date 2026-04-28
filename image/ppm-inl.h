@@ -19,18 +19,6 @@ namespace image
       return channel*255;
    }
 
-   inline std::string ppmGetline(std::ifstream& image)
-   {
-      std::string buffer{};
-      u8 ch;
-      while((ch=image.get())!=' ' && ch!='\n')
-         if(ch=='#')
-            image.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-         else
-            buffer+=ch;
-      return buffer;
-   }
-
    inline void ppmHeader(std::ofstream& image, const ppmArgs args)
    {
       if(args.maxVal!=255)
@@ -48,7 +36,7 @@ namespace image
       {
          if(!count)
          {
-            temp=ppmGetline(image);
+            std::getline(image, temp);
             if(temp[0]!='#')
             {
                args.type=temp;
@@ -57,18 +45,18 @@ namespace image
          }
          if(count==1)
          {
-            temp=ppmGetline(image);
+            std::getline(image, temp, ' ');
             if(temp[0]!='#')
             {
                args.width=atoi(temp.c_str());
                count++;
             }
             else
-               temp=ppmGetline(image);
+               std::getline(image, temp);
          }
          if(count==2)
          {
-            temp=ppmGetline(image);
+            std::getline(image, temp);
             if(temp[0]!='#')
             {
                args.height=atoi(temp.c_str());
@@ -77,7 +65,7 @@ namespace image
          }
          if(count==3)
          {
-            temp=ppmGetline(image);
+            std::getline(image, temp);
             if(temp[0]!='#')
             {
                args.maxVal=atoi(temp.c_str());
