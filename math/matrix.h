@@ -44,7 +44,6 @@ namespace math
          matrix getSubMatrix(intRange, intRange) const;
          matrix transpose() const noexcept;
          matrix& transposeAssign() noexcept;
-         //matrix& subMatrixConstruct(matrix&, matrix&, matrix&, matrix&);
 
          matrix multiplyElements(const matrix&) const;
          matrix& multiplyElementsAssign(const matrix&);

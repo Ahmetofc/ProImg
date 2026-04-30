@@ -2,7 +2,6 @@ namespace image
 {
    inline std::vector<u8> sdlPreprocess(const math::matrix<double>& data) 
    {
-      // can add single dimension vectors -> inflate up to 3D
       if(data.rowNumber()!=3)
          throw std::domain_error("Invalid data to be preprocessed.\n");
       std::vector<u8> res;
@@ -288,7 +287,6 @@ namespace image
    {
       if(sigma<=0)
          throw std::domain_error("Invalid blur size.\n");
-      // refactor the codes to flatten - deflatten matrices into their own functions
       auto ch1 = extractR(data); auto ch1_data = ch1.getData();
       auto ch2 = extractG(data); auto ch2_data = ch2.getData();
       auto ch3 = extractB(data); auto ch3_data = ch3.getData();

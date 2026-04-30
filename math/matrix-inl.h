@@ -240,30 +240,3 @@ namespace math
       return *this;
    }
 }
-
-// make this into a constructor
-/*
-template <typename T>
-math::matrix<T>& math::matrix<T>::subMatrixConstruct(math::matrix<T>& tl, math::matrix<T>& bl, math::matrix<T>& tr, math::matrix<T>& br)
-{
-   for(u32 i{}; i<col; i++)
-      for(u32 j{}; j<row; j++)
-      {
-         if(i<tl.col)
-         {
-            if(j<tl.row)
-               data[i][j]=tl[i][j];
-            else
-               data[i][j]=bl[i][j-tl.row];
-         }
-         else
-         {
-            if(j<tr.row)
-               data[i][j]=tr[i-tl.col][j];
-            else
-               data[i][j]=br[i-tl.col][j-tr.row];
-         }
-      }
-   return *this;
-}
-*/
